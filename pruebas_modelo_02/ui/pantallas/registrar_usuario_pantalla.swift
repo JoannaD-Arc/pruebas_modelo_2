@@ -107,6 +107,8 @@ struct RegistrarUsuario: View{
                     nivel_de_error: .grave)
             }
         }
+        return
+        
     }
     
     func crear_usuario() -> Usuario{
