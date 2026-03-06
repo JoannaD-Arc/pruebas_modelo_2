@@ -11,22 +11,34 @@ struct PantallaBasica: View {
     @Environment(ControladorGeneral.self) var controlador
     
     var body: some View {
-
-        ForEach(controlador.mensajes){ mensaje in
-            NavigationLink{
-                Text("Esta es la pantalla de \(mensaje.texto)")
-            }
-            label: {
-                Text("Picale para ir a pantalla de \(mensaje.texto)")
-            }
-            .onTapGesture {
-                print("Si ves esto en consola es que funcionó.")
-            }
-            .onAppear {
-                print("Hola, soy la vista de: \(mensaje.texto)")
+        Text("Mensajes pendientes: \(mensajes_falsos.count)")
+        
+        Spacer()
+        
+        ScrollView(.horizontal){
+            LazyHStack{
+                ForEach(usuarios_falsos){ usuario in
+                    EtiquetaUsuarioPerfil(usuario: usuario)
+                }
             }
         }
-        
+
+        ScrollView(.vertical){
+            LazyVStack{
+                ForEach(controlador.mensajes){ mensaje in
+                    NavigationLink{
+                        Text("Esta es la pantalla de \(mensaje)")
+                    }
+                    label: {
+                        VStack{
+                            Text("Mensaje de:")
+                            Text("\(mensaje.id_usuario ?? "Anónimo")")
+                        }
+                    }
+                    .padding(3)
+                }
+            }
+        }
         Text("Agregar un besito.")
             .onTapGesture{
                 controlador.agregar_mensajes()
