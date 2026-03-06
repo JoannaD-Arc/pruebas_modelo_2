@@ -11,8 +11,7 @@ struct PantallaBasica: View {
     @Environment(ControladorGeneral.self) var controlador
     
     var body: some View {
-        Text("Esta pantalla se mueve a la siguiente opción.")
-        
+
         ForEach(controlador.mensajes){ mensaje in
             NavigationLink{
                 Text("Esta es la pantalla de \(mensaje.texto)")
@@ -32,6 +31,13 @@ struct PantallaBasica: View {
             .onTapGesture{
                 controlador.agregar_mensajes()
             }
+        
+        NavigationLink{
+            RegistrarUsuario()
+        }
+        label:{
+                Text("Agregar usuario")
+        }
     }
 }
 

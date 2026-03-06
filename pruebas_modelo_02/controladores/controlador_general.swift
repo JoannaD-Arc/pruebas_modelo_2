@@ -21,7 +21,9 @@ class ControladorGeneral{
         mensajes += [Mensaje(texto: "Mensaje de \(mensajes.count + 1)")]
     }
     
-    func agregar_usuarios( _ usuario_nuevo: Usuario){
+    func agregar_usuario( _ usuario_nuevo: Usuario){
         usuarios.append(usuario_nuevo)
+        
+        print("La cantidad de usuarios es: \(usuarios.count)")
     }
 }

@@ -15,6 +15,7 @@ enum CamposRegistrarUsuarios: String{
 }
 
 struct RegistrarUsuario: View{
+    @Environment(ControladorGeneral.self) var controlador
     @State var nombre: String = ""
     @State var instagram:String = ""
     @State var edad: String = ""
@@ -26,9 +27,6 @@ struct RegistrarUsuario: View{
     
     var body: some View{
         
-        if(error != nil){
-            Text("\(error!.error)")
-        }
 
         VStack{
             
@@ -73,22 +71,22 @@ struct RegistrarUsuario: View{
             error = ErrorUI(
                 campo: CamposRegistrarUsuarios.nombre.rawValue,
                 error: "No se puede dejar el campo de nombre vacío.",
-                nivel_de_error: .grave)
+                nivel_de_error: .grave
+            )
+            
+            return
             
         }
         if(apodo.isEmpty){
             error = ErrorUI(
-                campo: CamposRegistrarUsuarios.edad.rawValue,
-                error: "",
-                nivel_de_error: .ninguno)
+                campo: CamposRegistrarUsuarios.apodo.rawValue,
+                error: "No pusiste apodo, pero 'ta bien como quieras.",
+                nivel_de_error: .ninguno
+            )
             
-        }
-        
-        if(instagram.isEmpty){
-            error = ErrorUI(
-                campo: CamposRegistrarUsuarios.instagram.rawValue,
-                error: "",
-                nivel_de_error: .advertencia)
+            return
+            
+            
             
         }
         
@@ -96,7 +94,9 @@ struct RegistrarUsuario: View{
             error = ErrorUI(
                 campo: CamposRegistrarUsuarios.edad.rawValue,
                 error: "No se puede dejar el campo de edad vacío.",
-                nivel_de_error: .grave)
+                nivel_de_error: .grave
+            )
+            return
 
         }else if(!edad.isEmpty){
                 es_numero = Int(edad) != nil
@@ -104,11 +104,28 @@ struct RegistrarUsuario: View{
                 error = ErrorUI(
                     campo: CamposRegistrarUsuarios.edad.rawValue,
                     error: "La edad debe ser un número.",
-                    nivel_de_error: .grave)
+                    nivel_de_error: .grave
+                )
+                    return
             }
         }
-        return
         
+        if(instagram.isEmpty){
+            error = ErrorUI(
+                campo: CamposRegistrarUsuarios.instagram.rawValue,
+                error: "Agrega instagram o te pego.",
+                nivel_de_error: .advertencia
+            )
+            return
+        }
+        
+        
+        controlador.agregar_usuario(crear_usuario())
+        
+        nombre = ""
+        apodo  = ""
+        edad   = ""
+        instagram = ""
     }
     
     func crear_usuario() -> Usuario{
@@ -118,4 +135,5 @@ struct RegistrarUsuario: View{
 
 #Preview {
     RegistrarUsuario()
+        .environment(ControladorGeneral())
 }
