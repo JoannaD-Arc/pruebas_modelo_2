@@ -11,8 +11,25 @@ struct EtiquetaUsuarioPerfil: View {
     var usuario: Usuario
     
     var body: some View {
-        VStack(alignment: .leading){
-            Text("Nota...")
+        VStack(alignment: .center){
+
+            ZStack{
+                Image(systemName: "message.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(Color.black)
+                    .shadow(radius: 3)
+
+                Image(systemName: "message.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(Color.white)
+                
+                Text("Nota..")
+                
+            }.frame(width: 75)
+                
+            
             ZStack(alignment: .bottom){
                 Image("images")
                     .resizable()
