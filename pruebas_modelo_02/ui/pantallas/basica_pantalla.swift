@@ -29,61 +29,57 @@ struct PantallaBasica: View {
         .cornerRadius(20)
         .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
         
-        
-        ScrollView(.horizontal){
-            LazyHStack{
-                ForEach(usuarios_falsos){ usuario in
-                    EtiquetaUsuarioPerfil(usuario: usuario)
-                }
-                
-            }
-        }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
-            .frame(height: 200)
-        
-        ScrollView(.vertical){
-            LazyVStack(alignment: .leading){
-                Text("Mensajes")
-                ForEach(mensajes_falsos){ mensaje in
-                    
-                }
-            }
-        }
 
         ScrollView(.vertical){
-            LazyVStack{
-                HStack{
-                    Text("Mensajes")
-                        .font(.title2)
-                    Spacer()
+            
+            
+            ScrollView(.horizontal){
+                LazyHStack{
+                    ForEach(usuarios_falsos){ usuario in
+                        EtiquetaUsuarioPerfil(usuario: usuario)
+                    }
+                    
                 }
-                .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
-                .bold()
-                
-                ForEach(controlador.mensajes){ mensaje in
-                    NavigationLink{
-                        Text("Esta es la pantalla de \(mensaje)")
-                    }
-                    label: {
-                        VStack{
-                            Text("Mensaje de:")
-                            Text("\(mensaje.id_usuario ?? "Anónimo")")
-                        }
-                    }
-                    .padding(3)
+            }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
+                .frame(height: 200)
+            
+            
+            LazyVStack(alignment: .leading){
+                Text("Mensajes")
+                    .bold()
+                ForEach(mensajes_falsos){ mensaje in
+                    PrevisualizacionMensaje(mensaje: mensaje)
                 }
             }
+            .padding(10)
         }
+
+        HStack{
+            Spacer()
+            Image(systemName: "paperplane")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 25)
+            Spacer()
+            Image(systemName: "plus.app")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 25)
+            Spacer()
+        }
+        /*
         Text("Agregar un besito.")
             .onTapGesture{
                 controlador.agregar_mensajes()
             }
         
-        NavigationLink{
+       NavigationLink{
             RegistrarUsuario()
         }
         label:{
                 Text("Agregar usuario")
         }
+        */
     }
 }
 
