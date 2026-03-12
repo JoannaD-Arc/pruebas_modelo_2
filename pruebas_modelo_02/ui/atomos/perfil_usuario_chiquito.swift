@@ -31,7 +31,7 @@ struct EtiquetaUsuarioPerfil: View {
                 
             
             ZStack(alignment: .bottom){
-                Image("images")
+                Image("Blahaj")
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())

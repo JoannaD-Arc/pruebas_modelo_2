@@ -14,12 +14,10 @@ struct PrevisualizacionMensaje: View {
         HStack{
             
             ZStack{
-                EllipticalGradient(colors:[Color.orange, Color.red, Color.yellow, Color.purple], center: .center, startRadiusFraction: 0.1, endRadiusFraction: 0.8
-                )
+                EllipticalGradient(colors:[Color.teal, Color.white, Color.pink], center: .leading, startRadiusFraction: 0.95, endRadiusFraction: 0.4)
                     .scaledToFit()
                     .clipShape(Circle())
-                
-                Image("images")
+                Image("Blahaj")
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
@@ -27,6 +25,7 @@ struct PrevisualizacionMensaje: View {
                         Circle()
                             .stroke(.white, lineWidth: 5)
                     }
+                    .frame(width: 60)
             }.frame(minWidth: 75, maxWidth: 75)
 
             VStack(alignment: .leading){

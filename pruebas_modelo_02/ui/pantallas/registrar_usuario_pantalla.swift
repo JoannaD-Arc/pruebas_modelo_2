@@ -30,45 +30,83 @@ struct RegistrarUsuario: View{
     
     var body: some View{
         
-
-        VStack{
+        ZStack{
             
-            CampoTexto(
-                entrada: $nombre,
-                placeholder: "Nombre",
-                error: error,
-                identificador: CamposRegistrarUsuarios.nombre.rawValue
-            )
-            
-            CampoTexto(
-                entrada: $apodo,
-                placeholder: "Apodo",
-                error: error,
-                identificador: CamposRegistrarUsuarios.apodo.rawValue
-            )
-            CampoTexto(
-                entrada: $edad,
-                placeholder: "Edad",
-                error:error,
-                identificador: CamposRegistrarUsuarios.edad.rawValue
-            )
-            CampoTexto(
-                entrada: $instagram,
-                placeholder: "Instagram",
-                error:error,
-                identificador: CamposRegistrarUsuarios.instagram.rawValue
-            )
-            
-            Button(action: {validar_entradas()}){
+            EllipticalGradient(colors:[Color.acentoGris, Color.teal], center: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, startRadiusFraction: 0.1, endRadiusFraction: 4)
+                .ignoresSafeArea()
+                
+            VStack{
+                
                 HStack{
-                    Image(systemName: "person.fill.badge.plus")
-                    Text("Agregar usuario")
+                    Text("Blåhajgram")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.pink, .teal],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                    
+                    Image(systemName: "camera.fill")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.pink, .teal],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                }
+             
+                
+                CampoTexto(
+                    entrada: $nombre,
+                    placeholder: "  Nombre",
+                    error: error,
+                    identificador: CamposRegistrarUsuarios.nombre.rawValue
+                )
+                CampoTexto(
+                    entrada: $apodo,
+                    placeholder: "  Apodo",
+                    error: error,
+                    identificador: CamposRegistrarUsuarios.apodo.rawValue
+                )
+                CampoTexto(
+                    entrada: $edad,
+                    placeholder: "  Edad",
+                    error:error,
+                    identificador: CamposRegistrarUsuarios.edad.rawValue
+                )
+                CampoTexto(
+                    entrada: $instagram,
+                    placeholder: "  Instagram",
+                    error:error,
+                    identificador: CamposRegistrarUsuarios.instagram.rawValue
+                )
+                
+                HStack{
+                    Button(action: {validar_entradas()}){
+                        HStack{
+                            Text("Registrar Usuario")
+                                .foregroundStyle(.white)
+                                .bold()
+                        }
+                    }
+                    .padding(50)
+                    .frame(height: 40)
+                    .background(RoundedRectangle(cornerRadius: 20)
+                        .foregroundStyle(Color.teal))
+                    
                 }
             }
+            .padding()
         }
-        .padding()
-    }
-    
+        
+        }
+
     func validar_entradas(){
         if(nombre.isEmpty){
             error = ErrorUI(

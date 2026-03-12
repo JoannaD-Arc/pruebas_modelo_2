@@ -15,7 +15,13 @@ struct CampoTexto: View {
     var identificador: String
     
     var body: some View {
+        
         TextField(placeholder, text: $entrada)
+            .frame(height: 50)
+            .overlay(RoundedRectangle(cornerRadius: 20)
+                .stroke(.gray, lineWidth: 1)
+            )
+            .padding(5)
         if(error?.campo == identificador){
             switch error!.nivel_de_error {
             case .grave:
@@ -29,4 +35,9 @@ struct CampoTexto: View {
             }
         }
     }
+}
+
+#Preview {
+    RegistrarUsuario()
+        .environment(ControladorGeneral())
 }

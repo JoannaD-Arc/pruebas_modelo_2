@@ -5,7 +5,7 @@
 //  Created by alumno on 3/6/26.
 //
 let usuarios_falsos: [Usuario] = [
-    Usuario(nombre: "Kevin", edad: 21, apodo: "SigmaSkibidi", instagram: "@skibidi_sigma"),
+    Usuario(nombre: "Monika", edad: 21, apodo: "SigmaSkibidi", instagram: "@skibidi_sigma"),
 
     Usuario(nombre: "Brayan", edad: 23, apodo: "GigachadDelOxxo", instagram: "@gigachad_420"),
 
